@@ -67,14 +67,14 @@ exports.login = (req, res) => {
       });
     } 
      const role = results[0].role_id;
-     const token = jwt.sign({ id: user.id, role: user.role }, 'your_jwt_secret', { expiresIn: '1h' });
+    //  const token = jwt.sign({ id: results[0].role_id, role: user.role }, 'your_jwt_secret', { expiresIn: '1h' });
 
      if (role === 1) {
       console.log("st")
-       return res.status(200).json({ message: 'Login successful', role: 'student', redirectUrl: '/student/home', token: token });
+       return res.status(200).json({ message: 'Login successful', role: 'student', redirectUrl: '/student/home' });
      } else if (role === 0) {
       console.log("teacher")
-       return res.status(200).json({ message: 'Login successful', role: 'teacher', redirectUrl: '/teacher/home', token: token });
+       return res.status(200).json({ message: 'Login successful', role: 'teacher', redirectUrl: '/teacher/home'});
      } else {
        return res.status(400).json({ message: 'Unknown role' });
      }
